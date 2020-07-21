@@ -23,7 +23,6 @@ You can follow [this guide](https://blog.teamtreehouse.com/install-node-js-npm-m
 
 ```
 npm install
-
 ```
 
 Now that the setup is complete, you can use the tool. 
@@ -61,7 +60,5 @@ The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of 
     "id": "rs2465136"
   },
   {
-
-
 ```
 ##
