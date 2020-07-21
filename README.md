@@ -22,12 +22,8 @@ Requirements:
 You can follow [this guide](https://blog.teamtreehouse.com/install-node-js-npm-mac) and simply run:
 
 ```
-brew update
-brew install node
-npm isntall
-npm install fs-js
-npm install axios
-npm install cli-progress
+npm install
+
 ```
 
 Now that the setup is complete, you can use the tool. 
