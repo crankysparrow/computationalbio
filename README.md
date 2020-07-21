@@ -25,6 +25,9 @@ Alternatively, you can follow [this guide](https://blog.teamtreehouse.com/instal
 brew update
 brew install node
 npm isntall
+npm install fs-js
+npm install axios
+npm install cli-progress
 ```
 
 
