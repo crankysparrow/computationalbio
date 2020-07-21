@@ -2,6 +2,16 @@
 
 @crankysparrow, with contributions from @bbitarello
 
+## Clone this repo
+
+Either into a directory in your computer by running
+
+````
+git clone https://github.com/crankysparrow/computationalbio.git
+```
+
+or by clicking 'open in github desktop'(above, on the right)
+
 ## An API query tool for [gnomAD](https://gnomad.broadinstitute.org/)
 Requirements:
 
