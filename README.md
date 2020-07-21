@@ -6,7 +6,7 @@
 
 Either into a directory in your computer by running
 
-````
+```
 git clone https://github.com/crankysparrow/computationalbio.git
 ```
 
