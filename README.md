@@ -23,6 +23,8 @@ Alternatively, you can follow [this guide](https://blog.teamtreehouse.com/instal
 
 ```
 brew install node
+#wait for it to complete
+npm isntall
 ```
 
 
