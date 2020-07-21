@@ -42,7 +42,7 @@ node readIDs.js
 
 Create a directory for results:
 
-````
+```
 mkdir -p results/
 ```
 Now you can run the query and save the output into a file like this one:
