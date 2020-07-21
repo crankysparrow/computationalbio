@@ -22,8 +22,8 @@ Requirements:
 Alternatively, you can follow [this guide](https://blog.teamtreehouse.com/install-node-js-npm-mac) and simply run:
 
 ```
+brew update
 brew install node
-#wait for it to complete
 npm isntall
 ```
 
