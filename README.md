@@ -47,7 +47,20 @@ The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of 
 ```
 #A fragment of the output:
 
-
+[
+  {
+    "study": "GNOMAD_GENOMES",
+    "population": "NFE",
+    "refAllele": "T",
+    "altAllele": "C",
+    "refAlleleFreq": 0.6836476,
+    "altAlleleFreq": 0.31635246,
+    "refHomGenotypeFreq": 0.4681107,
+    "hetGenotypeFreq": 0.43107367,
+    "altHomGenotypeFreq": 0.10081562,
+    "id": "rs2465136"
+  },
+  {
 
 
 ```
