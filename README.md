@@ -9,7 +9,7 @@ Requirements:
 
 -[npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-Alternatively, if you have Homebrow isntalled on your MAC you can simply run:
+Alternatively, you can follow [this guide](https://blog.teamtreehouse.com/install-node-js-npm-mac) and simply run:
 
 ```
 brew install node
