@@ -11,7 +11,7 @@ Requirements:
 
 Alternatively, if you have Homebrow isntalled on your MAC you can simply run:
 
-````
+```
 brew install node
 ```
 
