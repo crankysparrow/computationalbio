@@ -47,7 +47,7 @@ node index.js
 
 The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of the former) allelic frequencies for each SNP in the NFE (non-Finnish European) population. If you want a different population or different anything, you can [edit the index.js](index.js) file.
 
-``
+```
 #A fragment of the output:
 
 
