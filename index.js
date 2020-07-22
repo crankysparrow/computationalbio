@@ -5,7 +5,7 @@ const cliProgress = require('cli-progress');
 let urlStart = 'http://bioinfo.hpc.cam.ac.uk/cellbase/webservices/rest/v4/hsapiens/feature/variation/';
 let urlEnd = '/info?limit%3D-1%26skip%3D-1%26skipCount%3Dfalse%26count%3Dfalse%26Output%2520format%3Djson';
 
-let rsIDs = fs.readFileSync('rsIDs.json', 'utf8');
+let rsIDs = fs.readFileSync('input/rsIDs.json', 'utf8');
 
 rsIDs = JSON.parse(rsIDs);
 // let test = rsIDs.slice(0, 30);
