@@ -48,6 +48,13 @@ function asyncGetUrl(i) {
         if ( exomes ) {
           exomes.id = res.data.response[0].id;
           results.push( exomes );
+        } else {
+          let g1000ph3 = nfes.find( ( item ) => item.study == '1kG_phase3' );
+          if ( g1000ph3 ) {
+            g1000ph3.id = res.data.response[0].id;
+            results.push( g1000ph3 ); 
+
+          }
         }
       }      
 
