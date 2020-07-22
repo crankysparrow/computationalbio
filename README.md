@@ -27,18 +27,18 @@ npm install
 
 Now that the setup is complete, you can use the tool. 
 
-First, you need to provide an input file, containing SNP IDs, one per line, like [this one](rsIDs.txt). Put it in the same directory where you cloned the repo and use this exact name ('rsIDS.txt') for that file.
+First, you need to provide an input file, containing SNP IDs, one per line, like [this one](input/rsIDs.txt). Put it in the same directory where you cloned the repo and use this exact name ('rsIDS.txt') for that file.
 
-Next, convert that into a json format file [like this one](rsIDs.json) by running:
+Next, convert that into a json format file [like this one](input/rsIDs.json) by running:
 
 ```
-node readIDs.js
+node scripts/readIDs.js
 ```
 
 Now you can run the query and save the output into a file like this one:
 
 ```
-node index.js
+node scripts/gnomad_query.js
 ```
 
 The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of the former) allelic frequencies for each SNP in the NFE (non-Finnish European) population. If you want a different population or different anything, you can [edit the index.js](index.js) file.
