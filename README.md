@@ -32,7 +32,8 @@ First, you need to provide an input file, containing SNP IDs, one per line, like
 Next, convert that into a json format file [like this one](input/rsIDs.json) by running:
 
 ```
-node scripts/readIDs.js
+node scripts/readIDs.js --input input/rsIDs_whi.txt 
+#replace input/rsIDs_whi.txt by path/your_file_one_SNP_id_per_line
 ```
 
 Now you can run the query and save the output into a file like this one:
