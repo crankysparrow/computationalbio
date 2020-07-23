@@ -32,7 +32,7 @@ First, you need to provide an input file, containing SNP IDs, one per line, like
 Next, convert that into a json format file [like this one](input/rsIDs.json) by running:
 
 ```
-node scripts/readIDs.js --input input/rsIDs_whi.txt 
+node scripts/readIDs.js --input input/rsIDs_whi.txt --output input/rsIDs_whi.json
 ```
 *Note*: replace input/rsIDs_whi.txt by path/your_file_one_SNP_id_per_line
 
