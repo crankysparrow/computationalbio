@@ -2,14 +2,42 @@ const fs = require('fs');
 const axios = require('axios');
 const cliProgress = require('cli-progress');
 
+
+if (process.argv.length === 2) {
+  console.error('I expected at least one argument! It should be the name of a file with SNP IDs, one per line.');
+  process.exit(1);
+} else if (process.argv.length === 3) {
+console.log('No output data provided.I awill simply call it output.json')
+}
+// Checks for --input and if we have a value
+var path = process.cwd();
+const inputIndex = process.argv.indexOf('--input');
+let inputValue;
+
+const outputIndex = process.argv.indexOf('--output');
+let outputValue;
+
+if (inputIndex > -1) {
+  // Grabs the value after --input
+  inputValue = process.argv[inputIndex + 1];
+}
+console.log(path + "/" + inputValue);
+
+if (outputIndex > -1) {
+  // Grabs the value after --outputut
+  outputValue = process.argv[outputIndex + 1];
+}
+console.log(path + "/" + outputValue);
+
+
 let urlStart = 'http://bioinfo.hpc.cam.ac.uk/cellbase/webservices/rest/v4/hsapiens/feature/variation/';
 let urlEnd = '/info?limit%3D-1%26skip%3D-1%26skipCount%3Dfalse%26count%3Dfalse%26Output%2520format%3Djson';
 
-let rsIDs = fs.readFileSync('input/rsIDs_whi.json', 'utf8');
-
+let my_input = path + "/" + inputValue
+let my_output = path + "/" + outputValue
+var rsIDs = fs.readFileSync(my_input, 'utf8');
 rsIDs = JSON.parse(rsIDs);
-// let test = rsIDs.slice(0, 30);
-// let len = test.length;
+
 
 let len = rsIDs.length;
 let i = 0;
@@ -80,7 +108,7 @@ function asyncGetUrl(i) {
 }
 
 function write(toWrite) {
-  fs.writeFile('./results/results-all_whi.json', JSON.stringify(toWrite), (err) => {
+  fs.writeFile(my_output, JSON.stringify(toWrite), (err) => {
     if (err) console.error(err);
 
     console.log(errors);
