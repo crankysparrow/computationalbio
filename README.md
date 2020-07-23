@@ -1,4 +1,4 @@
-# A repo containing useful code snippets for computational biologists
+# Computational Biology Tools 
 
 @crankysparrow, with contributions from @bbitarello
 
