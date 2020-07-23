@@ -2,33 +2,53 @@ const fs = require('fs');
 const axios = require('axios');
 const cliProgress = require('cli-progress');
 
-
+let outputValue;
+let inputValue;
+let popValue;
+let dbValue;
+console.log(path);
 if (process.argv.length === 2) {
   console.error('I expected at least one argument! It should be the name of a file with SNP IDs, one per line.');
   process.exit(1);
-} else if (process.argv.length === 3) {
+} else if (process.argv.length === 4) {
 console.log('No output data provided.I awill simply call it output.json')
-}
-// Checks for --input and if we have a value
-var path = process.cwd();
+outputValue = 'output/output.json'
 const inputIndex = process.argv.indexOf('--input');
-let inputValue;
-
-const outputIndex = process.argv.indexOf('--output');
-let outputValue;
-
+// Checks for --output and if we have a value
 if (inputIndex > -1) {
   // Grabs the value after --input
   inputValue = process.argv[inputIndex + 1];
 }
-console.log(path + "/" + inputValue);
-
+popValue = 'NFE' //default unless otherwise provided
+dbValue = 'GNOMAD' //default unless otherwise provided
+} else if (process.argv.length === 6) {
+console.log('Good job, you provided but input and output file names')
+// Checks for --output and if we have a value
+const outputIndex = process.argv.indexOf('--output');
 if (outputIndex > -1) {
   // Grabs the value after --outputut
   outputValue = process.argv[outputIndex + 1];
 }
-console.log(path + "/" + outputValue);
-
+const inputIndex = process.argv.indexOf('--input');
+// Checks for --output and if we have a value
+if (inputIndex > -1) {
+  // Grabs the value after --input
+  inputValue = process.argv[inputIndex + 1];
+}
+const popIndex = process.argv.indexOf('--pop');
+const dbIndex = process.argv.indexOf('--db');
+if (popIndex > -1) {
+  // Grabs the value after --input
+  popValue = process.argv[popIndex + 1];
+}
+if (dbIndex > -1) {
+  // Grabs the value after --input
+  dbValue = process.argv[dbIndex + 1];
+}
+}
+// Checks for --input and if we have a value
+var path = process.cwd();
+//console.log(path + "/" + inputValue);
 
 let urlStart = 'http://bioinfo.hpc.cam.ac.uk/cellbase/webservices/rest/v4/hsapiens/feature/variation/';
 let urlEnd = '/info?limit%3D-1%26skip%3D-1%26skipCount%3Dfalse%26count%3Dfalse%26Output%2520format%3Djson';
@@ -64,9 +84,9 @@ function asyncGetUrl(i) {
       frequencies = res.data.response[0].result[0].annotation.populationFrequencies;
       
       let nfes = frequencies.filter( ( freq ) => {
-        return freq.population == 'NFE';
+        return freq.population == popValue;
       } );
-
+     if ( dbValue == 'GNOMAD' ){
       let genomes = nfes.find( ( item ) => item.study == 'GNOMAD_GENOMES' )
       if ( genomes ) {
         genomes.id = res.data.response[0].id;
@@ -76,15 +96,10 @@ function asyncGetUrl(i) {
         if ( exomes ) {
           exomes.id = res.data.response[0].id;
           results.push( exomes );
-        } else {
-          let g1000ph3 = nfes.find( ( item ) => item.study == '1kG_phase3' );
-          if ( g1000ph3 ) {
-            g1000ph3.id = res.data.response[0].id;
-            results.push( g1000ph3 ); 
-
-          }
-        }
-      }      
+        } 
+      }
+    } 
+      // to do: add other dbase options     
 
     } catch ( err ) {
       errors.push({
