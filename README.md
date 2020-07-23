@@ -38,10 +38,13 @@ node scripts/readIDs.js
 Now you can run the query and save the output into a file like this one:
 
 ```
-node scripts/gnomad_query.js
+node scripts/gnomad_query.js --input input/rsIDs_jhs.json 
+#will produce an output file in output/output.json. Assumes pop=='NFE' and db=='GNOMAD' as defaults.
+node scripts/gnomad_query.js --input input/rsIDs_jhs.json --output output/results_jhs.js --pop 'NFE' --db 'GNOMAD'
+#user specified output file name
 ```
 
-The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of the former) allelic frequencies for each SNP in the NFE (non-Finnish European) population. If you want a different population or different anything, you can [edit the gnomad.js](index.js) file.
+The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of the former) allelic frequencies for each SNP in  specified population (default: non-Finnish European). If you want a different population or different anything, you can [edit the gnomad.js](index.js) file.
 
 ```
 #A fragment of the output:
@@ -62,3 +65,5 @@ The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of 
   {
 ```
 ##
+
+Stay tuned: we might include other query options in the future. Feedback welcome!
