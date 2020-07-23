@@ -33,8 +33,8 @@ Next, convert that into a json format file [like this one](input/rsIDs.json) by 
 
 ```
 node scripts/readIDs.js --input input/rsIDs_whi.txt 
-#replace input/rsIDs_whi.txt by path/your_file_one_SNP_id_per_line
 ```
+*Note*: #replace input/rsIDs_whi.txt by path/your_file_one_SNP_id_per_line
 
 Now you can run the query and save the output into a file like this one:
 
@@ -42,7 +42,7 @@ Now you can run the query and save the output into a file like this one:
 node scripts/gnomad_query.js --input input/rsIDs_jhs.json --output output/results_jhs.js --pop 'NFE' --db 'GNOMAD'
 ```
 
-Note: default values are: NFE (pop), GNOMAD (db), output/output.json (output). There is no default input file so you must provide at least that. 
+*Note*: default values are: NFE (pop), GNOMAD (db), output/output.json (output). There is no default input file so you must provide at least that. 
 The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of the former) allelic frequencies for each SNP in  specified population. 
 
 ```
