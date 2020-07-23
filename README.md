@@ -34,7 +34,7 @@ Next, convert that into a json format file [like this one](input/rsIDs.json) by 
 ```
 node scripts/readIDs.js --input input/rsIDs_whi.txt 
 ```
-*Note*: #replace input/rsIDs_whi.txt by path/your_file_one_SNP_id_per_line
+*Note*: replace input/rsIDs_whi.txt by path/your_file_one_SNP_id_per_line
 
 Now you can run the query and save the output into a file like this one:
 
