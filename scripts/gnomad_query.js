@@ -21,7 +21,7 @@ if (inputIndex > -1) {
 }
 popValue = 'NFE' //default unless otherwise provided
 dbValue = 'GNOMAD' //default unless otherwise provided
-} else if (process.argv.length === 6) {
+} else if (process.argv.length > 6) {
 console.log('Good job, you provided but input and output file names')
 // Checks for --output and if we have a value
 const outputIndex = process.argv.indexOf('--output');
