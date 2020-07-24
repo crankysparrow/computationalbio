@@ -26,7 +26,7 @@ var path = process.cwd();
 
 let my_input= path + "/" + inputValue;
 let my_output= path + "/" + outputValue;
-
+console.log(my_input)
 try {
   let data = fs.readFileSync(my_input, 'utf8');
   let arr = data.split('\n');

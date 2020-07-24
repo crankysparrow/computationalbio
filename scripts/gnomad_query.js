@@ -6,7 +6,7 @@ let outputValue;
 let inputValue;
 let popValue;
 let dbValue;
-console.log(path);
+
 if (process.argv.length === 2) {
   console.error('I expected at least one argument! It should be the name of a file with SNP IDs, one per line.');
   process.exit(1);
