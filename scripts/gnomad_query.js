@@ -56,11 +56,8 @@ let urlEnd = '/info?limit%3D-1%26skip%3D-1%26skipCount%3Dfalse%26count%3Dfalse%2
 let my_input = path + "/" + inputValue
 let my_output = path + "/" + outputValue
 var rsIDs = fs.readFileSync(my_input, 'utf8');
+
 rsIDs = JSON.parse(rsIDs);
-
-console.log(rsIDs);
-
-rsIDs = rsIDs.slice(260, 300);
 
 let len = rsIDs.length;
 let i = 0;

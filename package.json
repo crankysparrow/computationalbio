@@ -9,10 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "app": "^0.1.0",
     "axios": "^0.19.2",
     "cli-progress": "^3.8.2",
-    "fs-js": "^1.0.6",
     "inquirer": "^7.3.3"
   }
 }
