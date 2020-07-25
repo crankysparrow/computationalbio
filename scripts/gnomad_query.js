@@ -58,6 +58,9 @@ let my_output = path + "/" + outputValue
 var rsIDs = fs.readFileSync(my_input, 'utf8');
 rsIDs = JSON.parse(rsIDs);
 
+console.log(rsIDs);
+
+rsIDs = rsIDs.slice(260, 300);
 
 let len = rsIDs.length;
 let i = 0;
@@ -102,22 +105,25 @@ function asyncGetUrl(i) {
       // to do: add other dbase options     
 
     } catch ( err ) {
-      errors.push({
-        error: err,
-        id: rsIDs[i]
-      });
+      throw(err);
     }
+  } ).catch((err) => {
+    errors.push( {
+      errorName: err.name,
+      errorMessage: err.message,
+      errorStack: err.stack,
+      id: rsIDs[i]
+    } );
+  }).then(() => {
 
     i++;
-    if (i == len) {
+    if ( i == len ) {
       bar1.stop();
-      write(results);
+      write( results );
 
     } else {
       asyncGetUrl( i );
     }
-  } ).catch((err) => {
-    errors.push(err);
   })
 
 }
@@ -126,10 +132,28 @@ function write(toWrite) {
   fs.writeFile(my_output, JSON.stringify(toWrite), (err) => {
     if (err) console.error(err);
 
-    console.log(errors);
     console.log('done!');
 
-  })
+  });
+
+  if (fs.existsSync('./errors/error-log.json')) {
+    let prevErrors = fs.readFileSync('./errors/error-log.json');
+    prevErrors = JSON.parse(prevErrors);
+    prevErrors.push(errors);
+    fs.writeFile('./errors/error-log.json', JSON.stringify(prevErrors), (err) => {
+      if (err) console.error('Error writing the errors log: ', err);
+
+      console.log('Error log updated');
+    })
+  } else {
+
+    fs.writeFile('./errors/errors-log.json', JSON.stringify(errors), (err) => {
+      if (err) console.error('Error writing error log: ', err);
+
+      console.log('Error log updated');
+    })
+
+  }
 }
 
 asyncGetUrl(i);
