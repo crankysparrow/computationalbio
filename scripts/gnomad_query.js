@@ -52,7 +52,7 @@ let my_input = path + "/" + inputValue
 let my_output = path + "/" + outputValue
 var rsIDs = fs.readFileSync(my_input, 'utf8');
 
-rsIDs = JSON.parse(rsIDs).slice(260, 300);
+rsIDs = JSON.parse(rsIDs);
 
 let len = rsIDs.length;
 let i = 0;
