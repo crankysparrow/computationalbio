@@ -1,3 +1,5 @@
 results/*
 node_modules/
 errors/
+errorLogs/
+results-*
