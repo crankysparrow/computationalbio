@@ -1,6 +1,6 @@
 # Computational Biology Tools 
 
-@crankysparrow, with contributions from @bbitarello
+@crankysparrow & @bbitarello
 
 ## Clone this repo
 
