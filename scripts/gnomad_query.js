@@ -73,28 +73,36 @@ function asyncGetUrl(i) {
   let url = urlStart + rsIDs[i] + urlEnd;
 
   axios.get( url ).then( ( res ) => {
-
     bar1.increment();
-    let frequencies;
+
     try {
-      frequencies = res.data.response[0].result[0].annotation.populationFrequencies;
-      
-      let nfes = frequencies.filter( ( freq ) => {
-        return freq.population == popValue;
-      } );
-     if ( dbValue == 'GNOMAD' ){
-      let genomes = nfes.find( ( item ) => item.study == 'GNOMAD_GENOMES' )
-      if ( genomes ) {
-        genomes.id = res.data.response[0].id;
-        results.push( genomes );
-      } else {
-        let exomes = nfes.find( ( item ) => item.study == 'GNOMAD_EXOMES' );
-        if ( exomes ) {
-          exomes.id = res.data.response[0].id;
-          results.push( exomes );
-        } 
+      let results = res.data.response[0].result;
+
+      for (let i = 0; i < results.length; i++) {
+
+        let frequencies = results[i].annotation.populationFrequencies;
+
+        let nfes = frequencies.filter( ( freq ) => {
+          return freq.population == popValue;
+        } );
+
+        if ( dbValue == 'GNOMAD' ) {
+
+          let genomes = nfes.find( ( item ) => item.study == 'GNOMAD_GENOMES' );
+          if ( genomes ) {
+            genomes.id = res.data.response[0].id;
+            results.push( genomes );
+          } else {
+            let exomes = nfes.find( ( item ) => item.study == 'GNOMAD_EXOMES' );
+            if ( exomes ) {
+              exomes.id = res.data.response[0].id;
+              results.push( exomes );
+            }
+          }
+
+        }         
+
       }
-    } 
       // to do: add other dbase options     
 
     } catch ( err ) {
