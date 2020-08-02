@@ -65,4 +65,5 @@ The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of 
 ```
 ##
 
+UPDATE (Aug 2nd): We have now included all alterante allele frequencies in the output, i.e., you get query results for all alternative alleles for SNPs that are poly-allelic.
 Stay tuned: we might include other query options in the future. Feedback welcome!
