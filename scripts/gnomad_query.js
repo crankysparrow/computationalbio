@@ -76,12 +76,10 @@ function asyncGetUrl(i) {
     bar1.increment();
 
     try {
-      let results = res.data.response[0].result;
 
-      for (let i = 0; i < results.length; i++) {
+      for (let i = 0; i < res.data.response[0].result.length; i++) {
 
-        let frequencies = results[i].annotation.populationFrequencies;
-
+        let frequencies = res.data.response[0].result[i].annotation.populationFrequencies;
         let nfes = frequencies.filter( ( freq ) => {
           return freq.population == popValue;
         } );
