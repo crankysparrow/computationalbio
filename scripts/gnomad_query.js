@@ -77,8 +77,12 @@ function asyncGetUrl(i) {
     bar1.increment();
     let frequencies;
     try {
-      frequencies = res.data.response[0].result[0].annotation.populationFrequencies;
+      //let results = res.data.response[0].result
       
+      for (let i = 0; i < res.data.response[0].result.length;i++){
+        console.log(i);
+      //let frequencies = results[0].annotation.populationFrequencies;
+      let frequencies = res.data.response[0].result[i].annotation.populationFrequencies;
       let nfes = frequencies.filter( ( freq ) => {
         return freq.population == popValue;
       } );
@@ -94,7 +98,9 @@ function asyncGetUrl(i) {
           results.push( exomes );
         } 
       }
-    } 
+    }
+  }
+  
       // to do: add other dbase options     
 
     } catch ( err ) {
