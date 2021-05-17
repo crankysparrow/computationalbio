@@ -70,7 +70,7 @@ The output will contain 'GNOMAD-GENOMES' and 'GNOMAD-EXOMES' (in the absence of 
 ## LiftOver PLINK 1 files (easy)
 ```
 #run 
-scripts/liftOverplink.sh 
+scripts/LiftOverPlink.sh -c tmp/hg19ToHg38.over.chain.gz -i to_delete/UKB_EUR_hg38_filt -o to_delete/UKB_EUR_hg19_filt -d tmp-dir/ -m scripts/PlinkLiftOver.py -a scripts/rmBadLifts.py
 
 ```
 Stay tuned: we might include other query options in the future. Feedback welcome!
