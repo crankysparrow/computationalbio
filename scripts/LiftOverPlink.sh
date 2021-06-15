@@ -21,7 +21,6 @@ while getopts ${optstring} arg;
     ;;
     esac
 done
-
     c) chain=${OPTARG};; 
     i) input=${OPTARG};; 
     o) output=${OPTARG};;
@@ -32,19 +31,21 @@ done
 done 
 echo "Given chain file is: " $chain
 sleep 10
-#chain=tmp/hg19ToHg38.over.chain.gz #full path to chain file for liftover (downloaded from UCSC)
-#path_source=to_delete/UKB_EUR_hg38_filt #full path to input file
+#chain=tmp-dir/hg19ToHg38.over.chain.gz #full path to chain file for liftover (downloaded from UCSC)
+#path_source=tmp-dir/hrs_afr_hg19_hm3_2 #full path to input file
 #path_output=to_delete/UKB_EUR_hg19_filt #full path to output file
 #from=hg19 #build before liftover
 #to=hg38 #build after liftover
 #tmp=tmp-dir/ #keep intermediate files here
-#path_python_script=scripts/liftOverPlink.py #I didn't write this script. I copied it from here: https://github.com/sritchie73/liftOverPlink/blob/master/liftOverPlink.py
+#path_python_script=scripts/LiftOverPlink.py #I didn't write this script. I copied it from here: https://github.com/sritchie73/liftOverPlink/blob/master/liftOverPlink.py
+#aux=scripts/rmBadLifts.py #auxiliary file
+#rs_to_chr_pos==TRUE #boolean; do you want your snp IDs in the format chr_pos?
 #NOTE: that python script was written in python 2 so I made some minor adjustments to make it work for python 3.
 
-plink --bfile ${input} --recode --out ${tmp}genotypes --threads 10 
+plink --bfile ${path_source} --recode --out ${tmp}genotypes --threads 10 
 sleep 10
 #Create a "lifted" MAP file.
-python ${main} --map ${tmp}genotypes.map --out ${tmp}lifted --chain ${chain} &
+python ${path_python_script} --map ${tmp}genotypes.map --out ${tmp}lifted --chain ${chain} &
 wait %1
 #Remove bad lifted SNPs from that MAP file.
 python ${aux} --map ${tmp}lifted.map --out ${tmp}good_lifted.map --log ${tmp}bad_lifted.dat
@@ -59,12 +60,13 @@ awk '$5==0' ${tmp}final.bim|cut -f2 > ${tmp}exclude.txt
 awk '$5==0' ${tmp}final.bim|cut -f2 >> ${tmp}exclude.txt
 sort ${tmp}exclude.txt |uniq > ${tmp}tmp1 && mv ${tmp}tmp1 ${tmp}exclude.txt
 #Combine the fixed PED file, with the fixed MAP file.
-#conver to .bim/fam/bed
+#convert to .bim/fam/bed
 plink --bfile ${tmp}final --exclude ${tmp}exclude.txt --make-bed --out ${tmp}final2 --threads 20
+
 if [ rs_to_chr_pos==TRUE ];
-plink2 --bfile ${tmp}final2 --set-all-var-ids @_\# --make-bed --out ${output} --threads 20
+plink2 --bfile ${tmp}final2 --set-all-var-ids @_\# --make-bed --out ${path_output} --threads 20
 else
-plink --bfile ${tmp}final2 --make-bed --out ${output} --threads 20
+plink --bfile ${tmp}final2 --make-bed --out ${path_output} --threads 20
 fi
 
 rm ${tmp}genotypes*
